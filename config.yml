@@ -1,0 +1,6 @@
+# THIS IS THE DEFAULT CONFIG
+#
+#
+# Change the value of the node below to the folder you want to copy world files from.
+# If not specified, or non-existant, the plugin will simply generate a normal world on command.
+world-to-reset: world
