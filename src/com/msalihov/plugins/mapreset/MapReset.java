@@ -22,38 +22,48 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MapReset extends JavaPlugin {
-
+    
     private static HashMap<Integer, TempWorld> tempworlds = new HashMap<>();
+    private TranslationConfig tc;
     private File resetworld;
     public static final Logger log = Bukkit.getLogger();
-
+    
     @Override
     @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void onEnable() {
         FileUtils.clean();
         saveDefaultConfig();
         Bukkit.getServer().getPluginManager().registerEvents(new JoinListener(), this);
+        if (getConfig().getBoolean("reset-no-people")) {
+            Bukkit.getServer().getPluginManager().registerEvents(new QuitListener(), this);
+        }
         getCommand("resetworld").setExecutor(new WorldResetCommand(this));
+        tc = new TranslationConfig(this);
+        if (getConfig().getBoolean("reload-translations")) {
+            tc.reloadConfig();
+        } else {
+            tc.saveDefault();
+        }
         resetworld = new File(getConfig().getString("world-to-reset"));
         if (!resetworld.exists()) {
-            log.severe("World that is set to be reset in config does not exist! Expect errors!");
+            log.severe(tc.getTranslation("world"));
         }
         new TempWorld(this);
     }
-
+    
     @Override
     public void onDisable() {
         FileUtils.clean();
     }
-
+    
     public static int nextWorldId() {
         return tempworlds.size() + 1;
     }
-
+    
     public static void addWorld(Integer id, TempWorld world) {
         tempworlds.put(id, world);
     }
-
+    
     public static TempWorld getCurrentWorld() {
         return tempworlds.get(tempworlds.size());
     }

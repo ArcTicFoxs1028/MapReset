@@ -1,0 +1,28 @@
+translations:
+  en: Could not create translations file!
+  es: No puede crear archivo de traducciónes!
+  ru: Не получилось создать файл с переводами!
+world:
+  en: World that is set to be reset in config does not exist! Expect errors!
+  es: El mundo cuál es marcar para restaura no existe! Anticipa los errors!
+  ru: Мир который установлен в конфигурации не существует! Ожидайте ошибки!
+temp-copy:
+  en: Could not copy the world specified in config to a temporary folder!
+  es: No puede copiar el mundo cuál es marcar en la configuracion a un archivo temporal!
+  ru: Не смогли копировать мир из конфигурации в временную папку!
+temp-load:
+  en: Loaded temporary world successfully!
+  es: El mundo temporal fue cargar satisfactoriamente!
+  ru: Временный мир успешно загружен!
+resetting:
+  en: Resetting world...
+  es: Restaura el mundo...
+  ru: Сбрасываем мир...
+reset:
+  en: Map reset successfully!
+  es: El restauracion fue completar satisfactoriamente!
+  ru: Мир успешно сброшен!
+perms:
+  en: You do not have the necessary permissions!
+  es: Usted no tiene los permisos necesarios!
+  ru: У вас нету разрешение на это!

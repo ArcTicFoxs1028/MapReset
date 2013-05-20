@@ -22,19 +22,21 @@ import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 
 public class TempWorld {
-
+    
     private MapReset m;
+    private TranslationConfig tc;
     private int id;
-
+    
     public TempWorld(MapReset mr) {
         m = mr;
         id = MapReset.nextWorldId();
+        tc = new TranslationConfig(mr);
         File source = new File(m.getConfig().getString("world-to-reset"));
         File target = new File("tempworld-" + id);
         try {
             FileUtils.copyFolder(source, target);
         } catch (IOException ex) {
-            MapReset.log.severe("Could not copy world to be reset into a temporary folder!");
+            MapReset.log.severe(tc.getTranslation("temp-copy"));
         }
         Bukkit.getServer().createWorld(new WorldCreator("tempworld-" + id));
         Player[] players = Bukkit.getServer().getOnlinePlayers();
@@ -42,13 +44,13 @@ public class TempWorld {
             pl.teleport(Bukkit.getServer().getWorld("tempworld-" + id).getSpawnLocation());
         }
         MapReset.addWorld(id, this);
-        MapReset.log.info("Loaded temporary world successfully!");
+        MapReset.log.info(tc.getTranslation("temp-load"));
     }
-
+    
     public void teleport(Player pl) {
         pl.teleport(Bukkit.getServer().getWorld("tempworld-" + id).getSpawnLocation());
     }
-
+    
     public void unload() {
         Bukkit.getServer().unloadWorld("tempworld-" + id, true);
     }

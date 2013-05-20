@@ -1,5 +1,5 @@
 name: Map Reset
-version: 0.1
+version: 0.2
 main: com.msalihov.plugins.mapreset.MapReset
 author: msalihov
 description: The map that is configured in the configuration file is reset on command

@@ -24,18 +24,20 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class WorldResetCommand implements CommandExecutor {
-
+    
     private MapReset m;
-
+    private TranslationConfig tc;
+    
     public WorldResetCommand(MapReset mr) {
         m = mr;
+        tc = new TranslationConfig(mr);
     }
-
+    
     @Override
     @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {
         if (cs.hasPermission("mapreset.reset")) {
-            cs.sendMessage(ChatColor.GREEN + "Resetting world... (This may take a long time, depending on your server's performance!)");
+            cs.sendMessage(ChatColor.GREEN + tc.getTranslation("resetting"));
             Player[] players = Bukkit.getServer().getOnlinePlayers();
             for (Player pl : players) {
                 if (pl.getBedSpawnLocation() != null) {
@@ -48,10 +50,10 @@ public class WorldResetCommand implements CommandExecutor {
             TempWorld temp = MapReset.getCurrentWorld();
             temp.unload();
             new TempWorld(m);
-            cs.sendMessage(ChatColor.GREEN + "Map reset successfully!");
+            cs.sendMessage(ChatColor.GREEN + tc.getTranslation("reset"));
             return true;
         } else {
-            cs.sendMessage(ChatColor.RED + "You do not have the necessary permission!");
+            cs.sendMessage(ChatColor.RED + tc.getTranslation("perms"));
             return false;
         }
     }
