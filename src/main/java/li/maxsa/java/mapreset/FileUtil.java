@@ -28,7 +28,7 @@ import java.io.OutputStream;
 
 class FileUtil {
 
-    private static boolean deleteDirectory(File directory) {
+    private static void deleteDirectory(File directory) {
         if (directory.exists()) {
             File[] files = directory.listFiles();
             if (null != files) {
@@ -41,7 +41,7 @@ class FileUtil {
                 }
             }
         }
-        return (directory.delete());
+        directory.delete();
     }
 
     public static void clean() {

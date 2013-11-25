@@ -64,13 +64,13 @@ public class MapReset extends JavaPlugin {
         FileUtil.clean();
     }
 
-    public void registerListeners() {
+    void registerListeners() {
         PluginManager pm = Bukkit.getServer().getPluginManager();
         pm.registerEvents(new JoinListener(), instance);
         pm.registerEvents(new QuitListener(), instance);
     }
 
-    public void registerCommands() {
+    void registerCommands() {
         getCommand("resetworld").setExecutor(new WorldResetCommand());
     }
 

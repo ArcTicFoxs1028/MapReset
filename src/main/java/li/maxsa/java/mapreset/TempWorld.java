@@ -26,7 +26,7 @@ import java.io.IOException;
 class TempWorld {
 
     private final int id;
-    private World world;
+    private final World world;
 
     public TempWorld() {
         id = MapReset.nextWorldId();
